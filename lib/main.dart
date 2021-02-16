@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Alabarda Home'),
     );
   }
 }
@@ -51,6 +51,31 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _text01 = 'texto 01';
+  Color _text01Color= Colors.teal;
+  void _changeText() {
+    setState(() {
+      if (_text01 == 'texto 01') {
+        _text01 = 'You´re falling apart';
+      } else if (_text01 == 'You´re falling apart') {
+        _text01 = 'texto 02';
+      } else if (_text01 == 'texto 02') {
+        _text01 = 'texto 03';
+      } else {
+        _text01 = 'texto 01';
+      }
+    });
+
+  }
+  void _changeColor(){
+    setState(() {
+      if(_text01Color==Colors.teal){
+        _text01Color=Colors.amber;
+      }else{
+        _text01Color=Colors.teal;
+      }
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -96,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
@@ -104,6 +130,19 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            Text(
+              '$_text01',
+              style: TextStyle(color: _text01Color),
+            ),
+            RaisedButton(
+              
+              onPressed: _changeText,
+              child: Text('Change Text'),
+            ),
+            RaisedButton(
+              onPressed: _changeColor,
+              child: Text('Change Color'),
+            )
           ],
         ),
       ),
